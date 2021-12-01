@@ -113,7 +113,7 @@ Tricks not implemented by the optimizer should be implemented through optimizer 
         _delete_=True, grad_clip=dict(max_norm=35, norm_type=2))
     ```
 
-    If your config inherits the base config which already sets the `optimizer_config`, you might need `_delete_=True` to overide the unnecessary settings. See the [config documenetation](https://mmdetection.readthedocs.io/en/latest/config.html) for more details.
+    If your config inherits the base config which already sets the `optimizer_config`, you might need `_delete_=True` to override the unnecessary settings. See the [config documentation](https://mmdetection.readthedocs.io/en/latest/tutorials/config.html) for more details.
 
 - __Use momentum schedule to accelerate model convergence__:
     We support momentum scheduler to modify model's momentum according to learning rate, which could make the model converge in a faster way.
@@ -264,15 +264,19 @@ By default the hook's priority is set as `NORMAL` during registration.
 
 If the hook is already implemented in MMCV, you can directly modify the config to use the hook as below
 
+#### 4. Example: `NumClassCheckHook`
+
+We implement a customized hook named  [NumClassCheckHook](https://github.com/open-mmlab/mmdetection/blob/master/mmdet/datasets/utils.py) to check whether the `num_classes` in head matches the length of `CLASSSES` in `dataset`.
+
+We set it in [default_runtime.py](https://github.com/open-mmlab/mmdetection/blob/master/configs/_base_/default_runtime.py).
+
 ```python
-custom_hooks = [
-    dict(type='MyHook', a=a_value, b=b_value, priority='NORMAL')
-]
+custom_hooks = [dict(type='NumClassCheckHook')]
 ```
 
 ### Modify default runtime hooks
 
-There are some common hooks that are not registerd through `custom_hooks`, they are
+There are some common hooks that are not registered through `custom_hooks`, they are
 
 - log_config
 - checkpoint_config
