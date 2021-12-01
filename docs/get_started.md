@@ -53,7 +53,7 @@ If mmcv and mmcv-full are both installed, there will be `ModuleNotFoundError`.
     ```
 
     `E.g. 2` If you have CUDA 9.2 installed under `/usr/local/cuda` and would like to install
-    PyTorch 1.3.1., you need to install the prebuilt PyTorch with CUDA 9.2.
+    PyTorch 1.3.1., you need to install* the prebuilt PyTorch with CUDA 9.2.
 
     ```shell
     conda install pytorch=1.3.1 cudatoolkit=9.2 torchvision=0.4.2 -c pytorch
